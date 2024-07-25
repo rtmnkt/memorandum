@@ -39,5 +39,7 @@ jobs:
         # run: python -m pip install pegasus
       - name: Add Python scripts to PATH
         run: echo "${{ runner.tool_cache }}/python/3.10.*/x64/bin" >> $GITHUB_PATH
+      - name: Find pegasus installation path
+        run: python -c "import os; print(os.path.dirname(os.__file__))"
       - name: run python
-        run: pegasus --base-url https://raw.githubusercontent.com/rtmnkt/memorandum/main/memorandum.md dist/memorandum.docs --exclude-selectors header footer nav --exclude-keywords login --output-extension .txt --max-depth 2
+        run: python -m pegasus --base-url https://raw.githubusercontent.com/rtmnkt/memorandum/main/memorandum.md dist/memorandum.docs --exclude-selectors header footer nav --exclude-keywords login --output-extension .txt --max-depth 2
